@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "vc2022",
+      "displayName": "Visual Studio 2022 x64",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "toolset": "v143",
+      "binaryDir": "${sourceDir}/build/vc2022",
+      "cacheVariables": { "BUILD_TESTING": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "vc2022", "configurePreset": "vc2022", "configuration": "Debug" }
+  ],
+  "testPresets": [
+    { "name": "vc2022", "configurePreset": "vc2022", "configuration": "Debug", "output": { "outputOnFailure": true } }
+  ]
+}
