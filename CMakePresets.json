@@ -1,20 +1,25 @@
 {
   "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
   "configurePresets": [
     {
-      "name": "vc2022",
-      "displayName": "Visual Studio 2022 x64",
-      "generator": "Visual Studio 17 2022",
-      "architecture": "x64",
-      "toolset": "v143",
-      "binaryDir": "${sourceDir}/build/vc2022",
-      "cacheVariables": { "BUILD_TESTING": "ON" }
+      "name": "mingw",
+      "displayName": "MinGW (g++)",
+      "description": "使用系统已有的 MinGW g++ 编译器",
+      "generator": "MinGW Makefiles",
+      "binaryDir": "${sourceDir}/build/mingw",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
     }
   ],
   "buildPresets": [
-    { "name": "vc2022", "configurePreset": "vc2022", "configuration": "Debug" }
+    { "name": "mingw-release", "configurePreset": "mingw", "configuration": "Release" }
   ],
   "testPresets": [
-    { "name": "vc2022", "configurePreset": "vc2022", "configuration": "Debug", "output": { "outputOnFailure": true } }
+    {
+      "name": "mingw-test",
+      "configurePreset": "mingw",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    }
   ]
 }

@@ -1,3 +1,7 @@
-/build/
-/CMakeUserPresets.json
-/.vs/
+# 构建产物
+build/
+
+# IDE
+.vs/
+*.user
+CMakeUserPresets.json
