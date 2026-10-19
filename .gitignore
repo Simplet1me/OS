@@ -5,3 +5,5 @@ build/
 .vs/
 *.user
 CMakeUserPresets.json
+
+report/
