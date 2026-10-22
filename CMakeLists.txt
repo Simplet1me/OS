@@ -30,11 +30,24 @@ add_library(banker STATIC
 target_include_directories(banker PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(banker PUBLIC util)
 
+# 核心库: 分页存储管理(位示图)
+add_library(bitmap STATIC
+    src/bitmap.cpp
+)
+target_include_directories(bitmap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(bitmap PUBLIC util)
+
 # 课程实验: 死锁避免 —— 银行家算法模拟
 add_executable(exp_deadlock
     exp/exp_deadlock.cpp
 )
 target_link_libraries(exp_deadlock PRIVATE banker)
+
+# 课程实验: 基本存储管理 —— 分页式内存分配与回收(位示图)
+add_executable(exp_storage
+    exp/exp_storage.cpp
+)
+target_link_libraries(exp_storage PRIVATE bitmap)
 
 # 局部测试: 银行家算法
 enable_testing()
@@ -43,6 +56,13 @@ add_executable(test_banker
 )
 target_link_libraries(test_banker PRIVATE banker)
 add_test(NAME test_banker COMMAND test_banker)
+
+# 局部测试: 分页存储管理(位示图)
+add_executable(test_bitmap
+    test/test_bitmap.cpp
+)
+target_link_libraries(test_bitmap PRIVATE bitmap)
+add_test(NAME test_bitmap COMMAND test_bitmap)
 
 # 局部测试: 表格工具类
 add_executable(test_table
