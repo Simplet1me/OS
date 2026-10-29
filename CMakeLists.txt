@@ -37,6 +37,13 @@ add_library(bitmap STATIC
 target_include_directories(bitmap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(bitmap PUBLIC util)
 
+# 核心库: 页面置换算法(FIFO / LRU)
+add_library(page_replacement STATIC
+    src/page_replacement.cpp
+)
+target_include_directories(page_replacement PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(page_replacement PUBLIC util)
+
 # 课程实验: 死锁避免 —— 银行家算法模拟
 add_executable(exp_deadlock
     exp/exp_deadlock.cpp
@@ -48,6 +55,12 @@ add_executable(exp_storage
     exp/exp_storage.cpp
 )
 target_link_libraries(exp_storage PRIVATE bitmap)
+
+# 课程实验: 页面置换算法 —— FIFO 与 LRU 的模拟与对比
+add_executable(exp_page_replacement
+    exp/exp_page_replacement.cpp
+)
+target_link_libraries(exp_page_replacement PRIVATE page_replacement)
 
 # 局部测试: 银行家算法
 enable_testing()
@@ -63,6 +76,13 @@ add_executable(test_bitmap
 )
 target_link_libraries(test_bitmap PRIVATE bitmap)
 add_test(NAME test_bitmap COMMAND test_bitmap)
+
+# 局部测试: 页面置换算法(FIFO / LRU)
+add_executable(test_page_replacement
+    test/test_page_replacement.cpp
+)
+target_link_libraries(test_page_replacement PRIVATE page_replacement)
+add_test(NAME test_page_replacement COMMAND test_page_replacement)
 
 # 局部测试: 表格工具类
 add_executable(test_table
