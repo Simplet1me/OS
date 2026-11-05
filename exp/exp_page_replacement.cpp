@@ -33,6 +33,9 @@ const int kDefaultPageCount = 10; // 进程页面数 PP
 const int kDefaultFrameCount = 3; // 分配页框数 AP
 const int kDefaultTotal = 20;     // 访问序列长度
 
+
+
+
 // 经典例题(教材): 8 页、3 页框, FIFO 缺页 15 次, LRU 缺页 12 次
 const int kClassicPageCount = 8;
 const int kClassicFrameCount = 3;
