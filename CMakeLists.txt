@@ -44,6 +44,13 @@ add_library(page_replacement STATIC
 target_include_directories(page_replacement PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(page_replacement PUBLIC util)
 
+# 核心库: 磁盘存储空间分配与回收(位示图)
+add_library(disk_bitmap STATIC
+    src/disk_bitmap.cpp
+)
+target_include_directories(disk_bitmap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(disk_bitmap PUBLIC util)
+
 # 课程实验: 死锁避免 —— 银行家算法模拟
 add_executable(exp_deadlock
     exp/exp_deadlock.cpp
@@ -61,6 +68,12 @@ add_executable(exp_page_replacement
     exp/exp_page_replacement.cpp
 )
 target_link_libraries(exp_page_replacement PRIVATE page_replacement)
+
+# 课程实验: 磁盘存储空间的分配与回收(位示图)
+add_executable(exp_disk
+    exp/exp_disk.cpp
+)
+target_link_libraries(exp_disk PRIVATE disk_bitmap)
 
 # 局部测试: 银行家算法
 enable_testing()
@@ -83,6 +96,13 @@ add_executable(test_page_replacement
 )
 target_link_libraries(test_page_replacement PRIVATE page_replacement)
 add_test(NAME test_page_replacement COMMAND test_page_replacement)
+
+# 局部测试: 磁盘存储空间分配与回收(位示图)
+add_executable(test_disk_bitmap
+    test/test_disk_bitmap.cpp
+)
+target_link_libraries(test_disk_bitmap PRIVATE disk_bitmap)
+add_test(NAME test_disk_bitmap COMMAND test_disk_bitmap)
 
 # 局部测试: 表格工具类
 add_executable(test_table

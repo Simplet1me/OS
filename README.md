@@ -31,9 +31,11 @@ cmake --build --preset mingw-release
 build\mingw\exp_deadlock.exe             :: 实验: 死锁避免 —— 银行家算法模拟
 build\mingw\exp_storage.exe              :: 实验: 基本存储管理 —— 分页式分配与回收(位示图)
 build\mingw\exp_page_replacement.exe     :: 实验: 页面置换算法 —— FIFO 与 LRU 模拟
+build\mingw\exp_disk.exe                 :: 实验: 磁盘存储空间的分配与回收(位示图)
 build\mingw\test_banker.exe              :: 测试: 银行家算法
 build\mingw\test_bitmap.exe              :: 测试: 分页存储管理(位示图)
 build\mingw\test_page_replacement.exe    :: 测试: 页面置换算法(FIFO / LRU)
+build\mingw\test_disk_bitmap.exe         :: 测试: 磁盘存储空间分配与回收(位示图)
 ```
 
 运行测试也可以使用 `ctest --preset mingw-test`。
@@ -53,4 +55,5 @@ cmake --build --preset mingw-release
 | 死锁 | 死锁避免 —— 银行家算法模拟       | exp/exp_deadlock.cpp  |
 | 基本存储管理 | 分页式内存分配与回收(位示图) | exp/exp_storage.cpp   |
 | 页面置换算法 | FIFO 与 LRU 的模拟与对比         | exp/exp_page_replacement.cpp |
+| 磁盘存储管理 | 磁盘存储空间的分配与回收(位示图) | exp/exp_disk.cpp      |
 
